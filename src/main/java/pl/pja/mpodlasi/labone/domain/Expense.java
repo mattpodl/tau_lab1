@@ -18,10 +18,6 @@ public class Expense {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public double getValue() {
         return value;
     }
@@ -30,7 +26,9 @@ public class Expense {
         this.value = value;
     }
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        return date;
+    }
 
     public void setDate(Date date) {
         this.date = (Date) date.clone();
