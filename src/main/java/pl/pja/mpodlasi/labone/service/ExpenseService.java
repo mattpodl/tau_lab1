@@ -4,7 +4,7 @@ import pl.pja.mpodlasi.labone.domain.Expense;
 import java.util.ArrayList;
 
 public class ExpenseService implements IExpenseService{
-    private ArrayList<Expense> expensesCollection = new ArrayList<Expense>();
+    private ArrayList<Expense> expensesCollection = new ArrayList<>();
 
     public void Create(Expense expense) {
         if (expensesCollection.contains(expense)) {
@@ -36,6 +36,12 @@ public class ExpenseService implements IExpenseService{
     }
 
     public void Delete(Expense expense){
-        expensesCollection.remove(expense);
+        for (Expense ex : expensesCollection) {
+            if (ex.getId() == expense.getId()) {
+                expensesCollection.remove(expense);
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Expense doesn't exist");
     }
 }
