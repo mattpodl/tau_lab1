@@ -7,6 +7,7 @@ import pl.pja.mpodlasi.labone.domain.ExpenseRecord;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class ExpenseRecordTest {
 
@@ -17,14 +18,13 @@ public class ExpenseRecordTest {
     public void CreateExpenseRecord(){
         ExpenseRecord expenseRecord = new ExpenseRecord(expense);
         assertNotNull(expenseRecord.getCreated());
-        assertNotNull(expenseRecord.getLastModified());
-        assertNotNull(expenseRecord.getLastRead());
+        assertNull(expenseRecord.getLastModified());
+        assertNull(expenseRecord.getLastRead());
     }
 
     @Test
     public void AfterCreateExpenseRecordAllDatesAreEqual(){
         ExpenseRecord expenseRecord = new ExpenseRecord(expense);
-        assertEquals(expenseRecord.getCreated(),expenseRecord.getLastModified());
         assertEquals(expenseRecord.getLastRead(),expenseRecord.getLastModified());
     }
 
