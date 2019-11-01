@@ -9,18 +9,9 @@ public class ExpenseRecord {
     private LocalDateTime lastModified;
     private Expense expense;
 
-    public ExpenseRecord(Expense expense, boolean storeDates) {
+    public ExpenseRecord(Expense expense) {
         this.expense = expense;
-        if (storeDates) {
-            LocalDateTime now = LocalDateTime.now();
-            this.created = now;
-            this.lastModified = now;
-            this.lastRead = now;
-        }
-    }
-
-    public ExpenseRecord(Expense expense){
-        this(expense, true);
+        this.created = LocalDateTime.now();
     }
 
     public Expense getExpense() {
@@ -35,7 +26,7 @@ public class ExpenseRecord {
         return created;
     }
 
-    private void setCreated(LocalDateTime created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
