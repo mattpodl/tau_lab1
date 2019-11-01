@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class ExpenseService implements IExpenseService {
     private ArrayList<ExpenseRecord> db;
-    private boolean storeLastRead;
-    private boolean storeLastModified;
-    private boolean storeCreated;
+    private boolean storeLastRead = true;
+    private boolean storeLastModified = true;
+    private boolean storeCreated = true;
 
     public ExpenseService() {
         this(new ArrayList<>());
@@ -73,7 +73,7 @@ public class ExpenseService implements IExpenseService {
         if (!isStoreCreated()) record.setCreated(null);
         if (isStoreLastRead()) record.setLastRead();
         if (isStoreLastModified()) record.setLastModified();
-        db.add(new ExpenseRecord(expense));
+        db.add(record);
     }
 
     public Expense Read(int id) {
@@ -89,7 +89,7 @@ public class ExpenseService implements IExpenseService {
     public ArrayList<Expense> ReadAll() {
         ArrayList<Expense> expenseList = new ArrayList<>();
         for (ExpenseRecord ex : db) {
-            if (!storeLastRead) ex.setLastRead();
+            if (isStoreLastRead()) ex.setLastRead();
             expenseList.add(ex.getExpense());
         }
         return expenseList;
