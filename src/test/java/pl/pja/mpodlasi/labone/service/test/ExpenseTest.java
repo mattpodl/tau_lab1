@@ -18,17 +18,18 @@ public class ExpenseTest {
     private double expenseValue = 1.1;
     private Date expenseDate = new Date();
     private int expenseId = 1;
+    private String expenseDescription = "my first expense";
 
 
     @Before
     public void init() {
-        expense = new Expense(expenseId, expenseValue, expenseDate);
+        expense = new Expense(expenseId, expenseValue, expenseDate, expenseDescription);
     }
 
 
     @Test(expected = IllegalArgumentException.class)
     public void CreateExpenseWithIncorrectId() {
-        new Expense(-1, 1.0, new Date());
+        new Expense(-1, 1.0, new Date(), "custom string");
     }
 
     //Getters and Setters
@@ -49,5 +50,13 @@ public class ExpenseTest {
     @Test
     public void CheckID() {
         assertEquals(expenseId, expense.getId());
+    }
+
+    @Test
+    public void CheckDescription() {
+        assertEquals(expenseDescription, expense.getDescription());
+        String new_description = "new description";
+        expense.setDescription(new_description);
+        assertEquals(new_description,expense.getDescription());
     }
 }

@@ -1,10 +1,13 @@
 package pl.pja.mpodlasi.labone.service;
 
+import org.apache.commons.lang.NotImplementedException;
 import pl.pja.mpodlasi.labone.domain.Expense;
 import pl.pja.mpodlasi.labone.domain.ExpenseRecord;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ExpenseService implements IExpenseService {
     private ArrayList<ExpenseRecord> db;
@@ -115,5 +118,18 @@ public class ExpenseService implements IExpenseService {
             }
         }
         throw new IllegalArgumentException("Expense doesn't exist");
+    }
+
+    public Expense Find(String description) {
+        //yes it's finding only first that mach
+        for (ExpenseRecord record : db){
+            if (record.getExpense().getDescription().contains(description))
+                return record.getExpense();
+        }
+        return null;
+    }
+
+    public ArrayList<Expense> DeleteRecordByDescription(List<String> descriptionList) {
+        return new ArrayList<>(List.of(new Expense(1, 1.2,new Date(), "test")));
     }
 }

@@ -24,11 +24,11 @@ public class ExpenseServiceTest {
     public void CreateExpenses() {
         this.expenseService = new ExpenseService();
         expenseList = new ArrayList(List.of(
-                new Expense(1, 1.0, new Date()),
-                new Expense(2, 2.0, new Date()),
-                new Expense(3, 3.0, new Date()),
-                new Expense(4, 4.0, new Date()),
-                new Expense(5, 5.0, new Date())));
+                new Expense(1, 1.0, new Date(), "first"),
+                new Expense(2, 2.0, new Date(), "second"),
+                new Expense(3, 3.0, new Date(), "third"),
+                new Expense(4, 4.0, new Date(), "fourth"),
+                new Expense(5, 5.0, new Date(),"six")));
     }
 
     @Test
