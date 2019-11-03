@@ -5,6 +5,8 @@ import pl.pja.mpodlasi.labone.domain.ExpenseRecord;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class ExpenseService implements IExpenseService {
     private ArrayList<ExpenseRecord> db;
@@ -115,5 +117,29 @@ public class ExpenseService implements IExpenseService {
             }
         }
         throw new IllegalArgumentException("Expense doesn't exist");
+    }
+
+    public Expense Find(String description) {
+        //yes it's finding only first element that matches
+        for (ExpenseRecord record : db) {
+            if (record.getExpense().getDescription().contains(description))
+                return record.getExpense();
+        }
+        return null;
+    }
+
+    public ArrayList<Expense> deleteRecordsByDescription(List<String> descriptionList) {
+        ArrayList<Expense> deleteExpensesList = new ArrayList<>();
+        for (String description : descriptionList) {
+            while (true) {
+                Expense expense = this.Find(description);
+                if (expense == null) {
+                    break;
+                }
+                deleteExpensesList.add(expense);
+                this.Delete(expense);
+            }
+        }
+        return deleteExpensesList;
     }
 }
