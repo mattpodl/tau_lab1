@@ -1,5 +1,6 @@
 package pl.pja.mpodlasi.labone.service;
 
+import org.springframework.stereotype.Component;
 import pl.pja.mpodlasi.labone.domain.Expense;
 import pl.pja.mpodlasi.labone.domain.ExpenseRecord;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class ExpenseService implements IExpenseService {
     private ArrayList<ExpenseRecord> db;
     private boolean storeLastRead = true;
