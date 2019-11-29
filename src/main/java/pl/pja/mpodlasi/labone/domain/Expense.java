@@ -1,7 +1,7 @@
 package pl.pja.mpodlasi.labone.domain;
 
-import io.swagger.annotations.ApiModelProperty;
 
+import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 public class Expense {
